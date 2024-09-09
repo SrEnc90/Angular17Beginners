@@ -1,0 +1,23 @@
+<section>
+    @if (isLoggedIn) {
+        <p>Bienvenido {{username}}</p>
+        <!-- Cuándo abres los paréntesis (click), te sale todos los eventos que tiene ese elemento  -->
+        <img
+             (click)="greet()" 
+            src="https://github.com/srEnc90.png" 
+            alt="photo">
+    } @else {
+        <p>Inicia Sesión</p>
+        <button (click)="isLoggedIn = true">Log In</button>
+    }
+
+    <!-- mediante el evento addFavoriteEvent me suscribo al evento de tipo @Output  -->
+    <app-gamesinline 
+        (addFavoriteEvent)="getFavoriteGame($event)"
+        username="{{username}}" 
+    /> <!-- Debo de colocar el decorador @Input dentro de mi componente gamesinline, para indicar que username es una propiedad que viene del padre usercomponent hacia el hijo gamesinline  -->
+
+    @if (favGame !== '') {
+        <p>tu juego favorito es {{favGame}}</p>
+    }
+</section>
